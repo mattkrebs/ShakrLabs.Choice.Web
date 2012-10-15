@@ -1,0 +1,8 @@
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\obj\Debug\ShakrLabs.Choice.Data.csprojResolveAssemblyReference.cache
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\ShakrLabs.Choice.Data.dll.config
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\ShakrLabs.Choice.Data.dll
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\ShakrLabs.Choice.Data.pdb
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\EntityFramework.dll
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\EntityFramework.xml
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\obj\Debug\ShakrLabs.Choice.Data.dll
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\obj\Debug\ShakrLabs.Choice.Data.pdb

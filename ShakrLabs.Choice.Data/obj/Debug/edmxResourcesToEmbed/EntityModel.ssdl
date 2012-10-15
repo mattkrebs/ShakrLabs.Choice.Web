@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChoiceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ChoiceModelStoreContainer">
+    <EntitySet Name="Category" EntityType="ChoiceModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Poll" EntityType="ChoiceModel.Store.Poll" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PollItem" EntityType="ChoiceModel.Store.PollItem" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Poll_Category" Association="ChoiceModel.Store.FK_Poll_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Poll" EntitySet="Poll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PollItem_Poll" Association="ChoiceModel.Store.FK_PollItem_Poll">
+      <End Role="Poll" EntitySet="Poll" />
+      <End Role="PollItem" EntitySet="PollItem" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SubCategoryId" Type="int" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Poll">
+    <Key>
+      <PropertyRef Name="PollId" />
+    </Key>
+    <Property Name="PollId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PollItem">
+    <Key>
+      <PropertyRef Name="PollItemId" />
+    </Key>
+    <Property Name="PollItemId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="PollId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Poll_Category">
+    <End Role="Category" Type="ChoiceModel.Store.Category" Multiplicity="1" />
+    <End Role="Poll" Type="ChoiceModel.Store.Poll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Poll">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PollItem_Poll">
+    <End Role="Poll" Type="ChoiceModel.Store.Poll" Multiplicity="1" />
+    <End Role="PollItem" Type="ChoiceModel.Store.PollItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poll">
+        <PropertyRef Name="PollId" />
+      </Principal>
+      <Dependent Role="PollItem">
+        <PropertyRef Name="PollId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

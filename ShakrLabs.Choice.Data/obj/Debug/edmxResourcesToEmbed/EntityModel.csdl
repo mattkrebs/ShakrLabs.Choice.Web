@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChoiceModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ChoiceTestEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="ChoiceModel.Category" />
+    <EntitySet Name="Polls" EntityType="ChoiceModel.Poll" />
+    <EntitySet Name="PollItems" EntityType="ChoiceModel.PollItem" />
+    <AssociationSet Name="FK_Poll_Category" Association="ChoiceModel.FK_Poll_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Poll" EntitySet="Polls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PollItem_Poll" Association="ChoiceModel.FK_PollItem_Poll">
+      <End Role="Poll" EntitySet="Polls" />
+      <End Role="PollItem" EntitySet="PollItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="SubCategoryId" Type="Int32" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Polls" Relationship="ChoiceModel.FK_Poll_Category" FromRole="Category" ToRole="Poll" />
+  </EntityType>
+  <EntityType Name="Poll">
+    <Key>
+      <PropertyRef Name="PollId" />
+    </Key>
+    <Property Name="PollId" Type="Guid" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="ChoiceModel.FK_Poll_Category" FromRole="Poll" ToRole="Category" />
+    <NavigationProperty Name="PollItems" Relationship="ChoiceModel.FK_PollItem_Poll" FromRole="Poll" ToRole="PollItem" />
+  </EntityType>
+  <EntityType Name="PollItem">
+    <Key>
+      <PropertyRef Name="PollItemId" />
+    </Key>
+    <Property Name="PollItemId" Type="Guid" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="PollId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Poll" Relationship="ChoiceModel.FK_PollItem_Poll" FromRole="PollItem" ToRole="Poll" />
+  </EntityType>
+  <Association Name="FK_Poll_Category">
+    <End Role="Category" Type="ChoiceModel.Category" Multiplicity="1" />
+    <End Role="Poll" Type="ChoiceModel.Poll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Poll">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PollItem_Poll">
+    <End Role="Poll" Type="ChoiceModel.Poll" Multiplicity="1" />
+    <End Role="PollItem" Type="ChoiceModel.PollItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poll">
+        <PropertyRef Name="PollId" />
+      </Principal>
+      <Dependent Role="PollItem">
+        <PropertyRef Name="PollId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
