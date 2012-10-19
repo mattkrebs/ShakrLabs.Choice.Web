@@ -1,117 +1,56 @@
-﻿using System;
+﻿using ShakrLabs.Choice.Data;
+using ShakrLabs.Choice.Web.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
-using ShakrLabs.Choice.Data;
-using System.Threading.Tasks;
-using ShakrLabs.Choice.Web.Models;
-using System.IO;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.StorageClient;
-using System.Web.Mvc;
 
 namespace ShakrLabs.Choice.Web.Controllers
 {
     public class PollController : ApiController
     {
-        private ChoiceTestEntities db = new ChoiceTestEntities();
 
-        // GET api/Poll
-        public IEnumerable<Poll> GetPolls()
+        IPollRepository repository;
+
+        public PollController(IPollRepository repository) 
         {
-            var polls = db.Polls.Include(p => p.Category);
-            return polls.AsEnumerable();
+            this.repository = repository;
         }
 
-        // GET api/Poll/5
-        public Poll GetPoll(Guid id)
+        #region GET
+        // GET api/poll
+        public IEnumerable<PollResponseModel> GetPolls()
         {
-            Poll poll = db.Polls.Find(id);
+            
+            return repository.Get();
+        }
+
+        // GET api/poll/5
+        public PollResponseModel Get(string id)
+        {
+            PollResponseModel poll = repository.Get(id);
             if (poll == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
 
             return poll;
         }
+        #endregion
 
-        // PUT api/Poll/5
-        public HttpResponseMessage PutPoll(Guid id, Poll poll)
+        // POST api/poll
+        public void Post([FromBody]string value)
         {
-            if (ModelState.IsValid && id == poll.PollId)
-            {
-                db.Entry(poll).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
         }
 
-        //// POST api/Poll
-        public HttpResponseMessage PostPoll(Poll poll)
+        // PUT api/poll/5
+        public void Put(int id, [FromBody]string value)
         {
-            if (ModelState.IsValid)
-            {
-                db.Polls.Add(poll);
-                db.SaveChanges();
-
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, poll);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = poll.PollId }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
         }
 
-         
-
-        // DELETE api/Poll/5
-        public HttpResponseMessage DeletePoll(Guid id)
+        // DELETE api/poll/5
+        public void Delete(int id)
         {
-            Poll poll = db.Polls.Find(id);
-            if (poll == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            db.Polls.Remove(poll);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, poll);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace ShakrLabs.Choice.Web.Controllers
         // POST: /Choice/Create
 
         [HttpPost]
-        public ActionResult Create(ChoiceModel model)
+        public ActionResult Create(PollRequestModel model)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -65,7 +65,7 @@ namespace ShakrLabs.Choice.Web.Controllers
                 CreatedDate = DateTime.Now,
                 UserId = 1
             };
-            foreach (var file in model.files)
+            foreach (var file in model.Files)
             {
                 try
                 {

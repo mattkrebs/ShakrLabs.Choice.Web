@@ -1,4 +1,3 @@
-C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\obj\Debug\ShakrLabs.Choice.Data.csprojResolveAssemblyReference.cache
 C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\ShakrLabs.Choice.Data.dll.config
 C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\ShakrLabs.Choice.Data.dll
 C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Data\bin\Debug\ShakrLabs.Choice.Data.pdb

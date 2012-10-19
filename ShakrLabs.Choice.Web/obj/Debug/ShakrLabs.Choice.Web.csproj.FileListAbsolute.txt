@@ -35,3 +35,7 @@ C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\ShakrLabs.Choice.Data.
 C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\Microsoft.WindowsAzure.Configuration.dll
 C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\Microsoft.WindowsAzure.StorageClient.dll
 C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\Microsoft.WindowsAzure.StorageClient.xml
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\System.Net.Http.dll
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\System.Net.Http.WebRequest.dll
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\System.Net.Http.xml
+C:\Projects\ShakrLabs.Choice.Web\ShakrLabs.Choice.Web\bin\System.Net.Http.WebRequest.xml

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ChoiceTestEntities-Web.config Connection String" description="ChoiceTestEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/EntityModel.csdl|res://*/EntityModel.ssdl|res://*/EntityModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:z69vbhbm00.database.windows.net,1433;initial catalog=ChoiceTest;persist security info=True;user id=matt.krebs@z69vbhbm00;password=Drinksonm3;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\ShakrLabs\.Choice\.Web\\ShakrLabs\.Choice\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ChoiceTestEntities']/@connectionString" />
+  </parameter>
+</parameters>
